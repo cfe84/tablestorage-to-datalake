@@ -7,9 +7,14 @@ class ETL {
 
   async Run() {
     let entry;
-    while(! (entry = await this.extract.Next()).done) {
-      const transformedEntity = this.transform.Transform(entry);
-      await this.load.Load(transformedEntity);
+    try {
+      while (!(entry = await this.extract.Next()).done) {
+        const transformedEntity = this.transform.Transform(entry);
+        await this.load.Load(transformedEntity);
+      }
+    }
+    catch (err) {
+      console.log(err);
     }
   }
 }
