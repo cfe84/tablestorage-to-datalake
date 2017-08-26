@@ -9,7 +9,6 @@ class AsyncTableServiceQuery {
     this.tableName = tableName;
     this.continuationToken = null;
     this.done = false;
-    this.count = 0;
   }
 
   ContinueQueryExecution() {
@@ -31,8 +30,6 @@ class AsyncTableServiceQuery {
         else {
           this.done = true;
         }
-        this.count += res.entries.length;
-        console.log(this.count);
         return resolve({
           done: false,
           value: res.entries

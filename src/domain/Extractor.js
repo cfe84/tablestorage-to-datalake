@@ -25,7 +25,10 @@ class Extractor {
         value: null
       }
     }
-    return this.currentSet.pop();
+    return {
+      done: false,
+      value: this.currentSet.pop()
+    };
   }
 }
 
